@@ -1,0 +1,174 @@
+/* ============================
+   Responsive typography
+   ============================ */
+
+/* Use clamp for fluid sizes: (min, ideal, max) */
+:root {
+  --type-xs: clamp(0.8rem, 1.6vw, 0.9rem);
+  --type-sm: clamp(0.95rem, 1.8vw, 1rem);
+  --type-base: clamp(1rem, 2.0vw, 1.125rem);
+  --type-lg: clamp(1.15rem, 2.4vw, 1.25rem);
+  --type-xl: clamp(1.5rem, 3.2vw, 2rem);
+  --type-2xl: clamp(1.9rem, 4.2vw, 2.5rem);
+}
+
+/* Headline, body defaults */
+h1, .h1 { font-size: var(--type-2xl); line-height: 1.05; }
+h2, .h2 { font-size: var(--type-xl); line-height: 1.1; }
+h3, .h3 { font-size: var(--type-lg); line-height: 1.15; }
+p, label, li, .body { font-size: var(--type-base); }
+
+/* ============================
+   Inputs & Buttons
+   ============================ */
+
+.input {
+  width: 100%;
+  display: block;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: white;
+  box-shadow: none;
+  font-size: var(--type-base);
+  outline: none;
+  transition: box-shadow 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.dark .input {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.input:focus {
+  border-color: rgba(59,130,246,0.9); /* Tailwind blue-500 */
+  box-shadow: 0 6px 18px rgba(59,130,246,0.08);
+}
+
+/* Button primary */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  font-size: var(--type-sm);
+  cursor: pointer;
+  border: none;
+  background: #2563eb; /* blue-600 */
+  color: white;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.12); }
+.btn:active { transform: translateY(0); opacity: .95; }
+
+/* Secondary button */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(15,23,42,0.06);
+  color: inherit;
+}
+
+/* Danger */
+.btn-danger { background: #ef4444; }
+
+/* ============================
+  Cards, lists and layout
+   ============================ */
+
+.card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1rem;
+  border: 1px solid rgba(15,23,42,0.04);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.03);
+}
+
+.dark .card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: none;
+}
+
+/* Card header */
+.card .card-title { font-weight: 700; font-size: var(--type-lg); }
+.card .card-sub { font-size: var(--type-sm); opacity: .8; }
+
+/* Row helper */
+.row { display: flex; gap: 0.75rem; align-items: center; }
+
+/* Grid with responsive columns */
+.grid-cols-responsive {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .grid-cols-responsive { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .grid-cols-responsive { grid-template-columns: repeat(3, 1fr); } }
+
+/* ============================
+  Tiny utilities
+   ============================ */
+
+.center { display: flex; align-items: center; justify-content: center; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+
+/* ============================
+  Responsive spacing for small screens
+   ============================ */
+
+/* Increase touch targets on mobile */
+@media (max-width: 640px) {
+  .btn, .input { padding: 0.75rem 1rem; border-radius: 0.75rem; }
+}
+
+/* ============================
+  Footer helpers
+   ============================ */
+
+.site-footer {
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(15,23,42,0.04);
+  text-align: center;
+}
+
+/* ============================
+  Accessibility & focus outlines
+   ============================ */
+
+:focus {
+  outline: 3px solid rgba(59,130,246,0.12);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* ============================
+  Tiny form helper classes
+   ============================ */
+
+.form-row { display:flex; gap: 0.75rem; align-items: center; }
+.form-col { flex:1; }
+
+/* ============================
+  Smooth link hover
+   ============================ */
+
+a.link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 120ms ease, transform 120ms ease;
+}
+a.link:hover { color: #2563eb; transform: translateY(-2px); }
+
+/* ============================
+  Print styles (optional)
+   ============================ */
+@media print {
+  body { color: #000; background: #fff; }
+  .no-print { display: none; }
+}

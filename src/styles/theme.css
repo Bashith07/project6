@@ -1,0 +1,41 @@
+/* ================= LIGHT THEME ================= */
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --brand: #2563eb;
+  --brand-dark: #1e40af;
+
+  --border: #e5e7eb;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --shadow-xs: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-sm: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-md: 0 30px 60px rgba(0,0,0,0.12);
+
+  --font: "Inter", system-ui, sans-serif;
+}
+
+/* ================= DARK THEME (FULL SITE) ================= */
+
+.dark {
+  --bg: #020617;
+  --surface: #020617;
+  --surface-soft: #020617;
+
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+
+  --brand: #60a5fa;
+  --brand-dark: #3b82f6;
+
+  --border: rgba(255, 255, 255, 0.08);
+}

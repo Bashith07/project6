@@ -1,0 +1,142 @@
+/* ================= AUTH PAGE (LOGIN / REGISTER) ================= */
+
+.auth-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(1000px 400px at top, rgba(37,99,235,0.08), transparent),
+    var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ================= AUTH CARD ================= */
+
+.auth-card {
+  background: linear-gradient(
+    180deg,
+    var(--surface),
+    var(--surface-soft)
+  );
+  padding: 3rem 2.8rem;
+  border-radius: 22px;
+  width: 100%;
+  max-width: 420px;
+
+  box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+  animation: authFade 0.6s ease;
+}
+
+/* ================= TITLES ================= */
+
+.auth-card h2 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.auth-card p {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+/* ================= INPUTS ================= */
+
+.auth-card input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+  transition: all 0.25s ease;
+}
+
+.auth-card input::placeholder {
+  color: var(--muted);
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+}
+
+/* ================= BUTTON ================= */
+
+.auth-card button {
+  width: 100%;
+  padding: 0.95rem;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    var(--brand),
+    var(--brand-dark)
+  );
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.auth-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(37,99,235,0.35);
+}
+
+/* ================= AUTH LINKS ================= */
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.6rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.auth-link a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes authFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================= DARK MODE ================= */
+
+.dark .auth-card {
+  background: linear-gradient(180deg, #020617, #020617);
+  box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+}
+
+.dark .auth-card input {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: rgba(255,255,255,0.08);
+}
+
+.dark .auth-card input::placeholder {
+  color: #94a3b8;
+}

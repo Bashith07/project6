@@ -1,0 +1,361 @@
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 36px);
+  max-width: 1200px;
+  z-index: 1000;
+
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.8rem;
+}
+
+.navbar-logo span {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--brand);
+}
+
+/* Desktop links */
+.navbar-links {
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  font-weight: 500;
+  color: var(--text);
+  position: relative;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--brand);
+  transition: width 0.25s ease;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+/* Navbar actions */
+.navbar-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Logout */
+.logout-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+/* ================= HAMBURGER ================= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s ease;
+}
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.mobile-menu a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+}
+
+/* ================= HERO ================= */
+
+.hero-elite {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 6rem 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.hero-content h1 span {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 0.6rem;
+}
+
+.hero-content p {
+  margin-top: 1.8rem;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-primary {
+  background: var(--brand);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: var(--brand-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+/* ================= CARDS ================= */
+
+.elite-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.elite-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.elite-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.elite-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.elite-card-content {
+  padding: 1.8rem;
+}
+
+.elite-card-content h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.elite-card-content p {
+  margin-top: 0.6rem;
+  color: var(--muted);
+}
+
+/* ================= DARK MODE ================= */
+
+.dark .navbar {
+  background: rgba(2, 6, 23, 0.85);
+  border-color: rgba(255,255,255,0.08);
+}
+
+.dark .navbar-links a {
+  color: #e5e7eb;
+}
+
+.dark .navbar-links a::after {
+  background: #60a5fa;
+}
+
+.dark .navbar-logo span {
+  color: #60a5fa;
+}
+
+.dark .hamburger span {
+  background: #e5e7eb;
+}
+
+.dark .mobile-menu a {
+  color: #e5e7eb;
+}
+
+.dark .logout-link {
+  color: #f87171;
+}
+/* ================= COMMON PAGE STYLES ================= */
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+/* ================= GRID ================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;
+}
+
+/* ================= CARD ================= */
+
+.card {
+  width: 100%;
+  max-width: 420px;
+
+  background: var(--card-bg, #fff);
+  border-radius: 18px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  text-decoration: none;
+  color: inherit;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ================= IMAGE ================= */
+
+.card-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ================= CONTENT ================= */
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  margin: 0.35rem 0;
+  line-height: 1.5;
+}
+/* ================= FOOTER ================= */
+
+.footer {
+  background: var(--surface); /* same style as hero/cards */
+  color: var(--muted);
+  text-align: center;         /* horizontal center */
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+
+  display: flex;              /* for vertical + horizontal centering */
+  justify-content: center;    /* horizontal */
+  align-items: center;        /* vertical */
+  flex-direction: column;     /* if you have multiple lines */
+}
+
+/* Optional: Links inside footer */
+.footer a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 0.5rem;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
