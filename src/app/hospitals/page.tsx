@@ -3,34 +3,24 @@ import { hospitals } from "@/data/hospitalData";
 
 export default function HospitalsPage() {
   return (
-    <div className="page-container">
-      <h1 className="page-title">Hospitals</h1>
-
-      <div className="grid">
+    <div style={{ padding: "2rem" }}>
+      <h1>Hospitals</h1>
+      <div style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
         {hospitals.map((h) => (
-          <div key={h.id} className="card">
-            <Image
-              src={h.image}
-              alt={h.name}
-              width={400}
-              height={250}
-              className="card-image"
-            />
-
-            <div className="card-content">
-              <h3 className="card-title">{h.name}</h3>
-
-              <p className="card-text"><strong>Services:</strong> {h.services}</p>
-              <p className="card-text"><strong>Departments:</strong> {h.departments?.join(", ")}</p>
-              <p className="card-text"><strong>Address:</strong> {h.address}</p>
-              <p className="card-text"><strong>Contact:</strong> {h.phone}</p>
-              <p className="card-text"><strong>Timings:</strong> {h.timings}</p>
-              <p className="card-text"><strong>Facilities:</strong> {h.facilities}</p>
-              <p className="card-text"><strong>Website:</strong> {h.website}</p>
-            </div>
+          <div key={h.id} style={{ border: "1px solid #ccc", borderRadius: 8, padding: "1rem", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
+            <Image src={h.image} alt={h.name} width={400} height={250} style={{ width: "100%", height: "auto" }} />
+            <h3>{h.name}</h3>
+            <p><strong>Services:</strong> {h.services}</p>
+            <p><strong>Departments:</strong> {h.departments?.join(", ")}</p>
+            <p><strong>Address:</strong> {h.address}</p>
+            <p><strong>Phone:</strong> {h.phone}</p>
+            <p><strong>Timings:</strong> {h.timings}</p>
+            <p><strong>Facilities:</strong> {h.facilities}</p>
+            <p><strong>Website:</strong> <a href={h.website} target="_blank" rel="noopener noreferrer">{h.website}</a></p>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
