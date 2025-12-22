@@ -1,36 +1,25 @@
 import Image from "next/image";
-import { tourist } from "@/data/touristData";
+import { tourists } from "@/data/touristData";
 
 export default function TouristPage() {
   return (
-    <div className="page-container">
-      <h1 className="page-title">Tourist Attractions</h1>
-
-      <div className="grid">
-        {tourist.map((item) => (
-          <div key={item.id} className="card">
-            <Image
-              src={item.image}
-              alt={item.name}
-              width={400}
-              height={250}
-              className="card-image"
-            />
-
-            <div className="card-content">
-              <h3 className="card-title">{item.name}</h3>
-
-              <p className="card-text">{item.description}</p>
-              <p className="card-text"><strong>Location:</strong> {item.location}</p>
-              <p className="card-text"><strong>Entry Fee:</strong> {item.entryFee}</p>
-              <p className="card-text"><strong>Timings:</strong> {item.timings}</p>
-              <p className="card-text"><strong>Facilities:</strong> {item.facilities}</p>
-              <p className="card-text"><strong>Contact:</strong> {item.contact}</p>
-              <p className="card-text"><strong>Website:</strong> {item.website}</p>
-            </div>
+    <div style={{ padding: "2rem" }}>
+      <h1>Tourist Spots</h1>
+      <div style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+        {tourists.map((t) => (
+          <div key={t.id} style={{ border: "1px solid #ccc", borderRadius: 8, padding: "1rem", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
+            <Image src={t.image} alt={t.name} width={400} height={250} style={{ width: "100%", height: "auto" }} />
+            <h3>{t.name}</h3>
+            <p><strong>Type:</strong> {t.type}</p>
+            <p><strong>Timings:</strong> {t.timings}</p>
+            <p><strong>Entry Fee:</strong> {t.entryFee}</p>
+            <p><strong>Facilities:</strong> {t.facilities}</p>
+            <p><strong>Contact:</strong> {t.contact}</p>
+            <p>{t.description}</p>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
