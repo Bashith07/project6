@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { tourist } from "@/data/touristData";
 
@@ -9,7 +8,7 @@ export default function TouristPage() {
 
       <div className="grid">
         {tourist.map((item) => (
-          <Link key={item.id} href={`/tourist/${item.id}`} className="card">
+          <div key={item.id} className="card">
             <Image
               src={item.image}
               alt={item.name}
@@ -29,7 +28,7 @@ export default function TouristPage() {
               <p className="card-text"><strong>Contact:</strong> {item.contact}</p>
               <p className="card-text"><strong>Website:</strong> {item.website}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

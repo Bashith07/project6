@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { hospitals } from "@/data/hospitalData";
 
@@ -9,7 +8,7 @@ export default function HospitalsPage() {
 
       <div className="grid">
         {hospitals.map((h) => (
-          <Link key={h.id} href={`/hospitals/${h.id}`} className="card">
+          <div key={h.id} className="card">
             <Image
               src={h.image}
               alt={h.name}
@@ -29,7 +28,7 @@ export default function HospitalsPage() {
               <p className="card-text"><strong>Facilities:</strong> {h.facilities}</p>
               <p className="card-text"><strong>Website:</strong> {h.website}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

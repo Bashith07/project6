@@ -1,15 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",              // 👈 REQUIRED for GitHub Pages
   reactStrictMode: true,
 
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
+    unoptimized: true,           // 👈 REQUIRED for GitHub Pages
   },
 
   eslint: {

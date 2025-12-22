@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { transport } from "@/data/transportData";
 
@@ -9,7 +8,7 @@ export default function TransportPage() {
 
       <div className="grid">
         {transport.map((item) => (
-          <Link key={item.id} href={`/transport/${item.id}`} className="card">
+          <div key={item.id} className="card">
             <Image
               src={item.image}
               alt={item.name}
@@ -31,7 +30,7 @@ export default function TransportPage() {
 
               <p className="card-text">{item.description}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>
