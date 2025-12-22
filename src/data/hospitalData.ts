@@ -1,23 +1,40 @@
-export const hospitals = [
+export type Hospital = {
+  id: number;
+  name: string;
+  image: string;
+  services: string;
+  departments?: string[];
+  address?: string;
+  phone?: string;
+  timings?: string;
+  facilities?: string;
+  website?: string;
+};
+
+export const hospitals: Hospital[] = [
   {
     id: 1,
     name: "City General Hospital",
     image: "/images/hospitals/general.jpg",
     services: "24/7 Emergency, Surgery, ICU",
-    contact: "☎ 108"
+    departments: ["Emergency", "Surgery", "ICU"],
+    address: "123 Main Street, City",
+    phone: "☎ 108",
+    timings: "24/7",
+    facilities: "Ambulance, Pharmacy, Parking",
+    website: "https://cityhospital.example.com",
   },
   {
     id: 2,
     name: "Emergency Care Center",
     image: "/images/hospitals/emergency.jpg",
     services: "Trauma Care, Ambulance",
-    contact: "☎ 112"
+    departments: ["Trauma", "Ambulance"],
+    address: "456 Green Road, City",
+    phone: "☎ 112",
+    timings: "24/7",
+    facilities: "Parking, Pharmacy",
+    website: "https://emergencycare.example.com",
   },
-  {
-    id: 3,
-    name: "Family Clinic",
-    image: "/images/hospitals/clinic.jpg",
-    services: "OPD, Diagnostics",
-    contact: "☎ 044-123456"
-  }
 ];
+
