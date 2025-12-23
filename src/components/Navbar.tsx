@@ -1,15 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+  }, []);
 
   const logout = () => {
     localStorage.removeItem("isLoggedIn");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (
@@ -27,19 +32,23 @@ export default function Navbar() {
           <Link href="/tourist">Tourism</Link>
           <Link href="/transport">Transport</Link>
           <Link href="/hospitals">Hospitals</Link>
-          <Link href="/favourites">⭐ Favourites</Link>
 
-          {/* Logout (Desktop) */}
-          <button onClick={logout} className="logout-link">
-            Logout
-          </button>
+          {loggedIn ? (
+            <>
+              <Link href="/favourites">⭐ Favourites</Link>
+              <button onClick={logout} className="logout-link">
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link href="/login">Login</Link>
+          )}
         </nav>
 
         {/* Actions */}
         <div className="navbar-actions">
           <ThemeToggle />
 
-          {/* Hamburger */}
           <button
             className={`hamburger ${open ? "open" : ""}`}
             onClick={() => setOpen(!open)}
@@ -59,14 +68,21 @@ export default function Navbar() {
           <Link href="/tourist" onClick={() => setOpen(false)}>Tourism</Link>
           <Link href="/transport" onClick={() => setOpen(false)}>Transport</Link>
           <Link href="/hospitals" onClick={() => setOpen(false)}>Hospitals</Link>
-          <Link href="/favourites" onClick={() => setOpen(false)}>
-            ⭐ Favourites
-          </Link>
 
-          {/* Logout (Mobile) */}
-          <button onClick={logout} className="logout-link">
-            Logout
-          </button>
+          {loggedIn ? (
+            <>
+              <Link href="/favourites" onClick={() => setOpen(false)}>
+                ⭐ Favourites
+              </Link>
+              <button onClick={logout} className="logout-link">
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link href="/login" onClick={() => setOpen(false)}>
+              Login
+            </Link>
+          )}
         </div>
       )}
     </header>

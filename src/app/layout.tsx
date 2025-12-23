@@ -1,9 +1,8 @@
 // src/app/layout.tsx
 import "./globals.css";
-import Providers from "./Provider"; // wraps Redux Provider
+import Providers from "./Provider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AuthWrapper from "@/components/AuthWrapper";
 
 export const metadata = {
   title: "Smart City",
@@ -15,11 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Providers>
-          <AuthWrapper>
-            <Navbar />
-            <main className="page-container">{children}</main>
-            <Footer />
-          </AuthWrapper>
+          <Navbar />
+          <main className="page-container">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

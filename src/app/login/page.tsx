@@ -1,37 +1,55 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import AuthRedirect from "@/components/AuthRedirect";
 
-export default function LoginPage() {
+export default function AuthPage() {
   const router = useRouter();
+  const [isLogin, setIsLogin] = useState(true);
 
-  const handleLogin = () => {
+  const handleSubmit = () => {
     localStorage.setItem("isLoggedIn", "true");
     router.push("/");
   };
 
   return (
-    <AuthRedirect>
-      <div className="auth-page">
-        <div className="auth-card">
-          <h1>Login</h1>
-          <p>Access Smart City services</p>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h1>{isLogin ? "Login" : "Register"}</h1>
+        <p>
+          {isLogin
+            ? "Access Smart City services"
+            : "Create your Smart City account"}
+        </p>
 
-          <div className="auth-form">
-            <input placeholder="Email" />
-            <input type="password" placeholder="Password" />
+        <div className="auth-form">
+          {!isLogin && <input placeholder="Full Name" />}
+          <input placeholder="Email" />
+          <input type="password" placeholder="Password" />
 
-            <button className="btn-primary" onClick={handleLogin}>
-              Login
-            </button>
-          </div>
-
-          <p className="auth-footer">
-            New here? <a href="/register">Create account</a>
-          </p>
+          <button className="btn-primary" onClick={handleSubmit}>
+            {isLogin ? "Login" : "Register"}
+          </button>
         </div>
+
+        <p className="auth-footer">
+          {isLogin ? (
+            <>
+              New here?{" "}
+              <button onClick={() => setIsLogin(false)} className="link-btn">
+                Create account
+              </button>
+            </>
+          ) : (
+            <>
+              Already registered?{" "}
+              <button onClick={() => setIsLogin(true)} className="link-btn">
+                Login
+              </button>
+            </>
+          )}
+        </p>
       </div>
-    </AuthRedirect>
+    </div>
   );
 }
