@@ -3,25 +3,55 @@ import { transport } from "@/data/transportData";
 
 export default function TransportPage() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Public Transport</h1>
-      <div style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+    <div className="container section">
+      <h1 className="page-title">Public Transport</h1>
+
+      <div className="grid">
         {transport.map((t) => (
-          <div key={t.id} style={{ border: "1px solid #ccc", borderRadius: 8, padding: "1rem", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
-            <Image src={t.image} alt={t.name} width={400} height={250} style={{ width: "100%", height: "auto" }} />
-            <h3>{t.name}</h3>
-            <p><strong>Type:</strong> {t.type}</p>
-            <p><strong>Timing:</strong> {t.timing}</p>
-            <p><strong>Route:</strong> {t.route}</p>
-            <p><strong>Fare:</strong> {t.fare}</p>
-            <p><strong>Stops:</strong> {t.stops?.join(", ")}</p>
-            <p><strong>Facilities:</strong> {t.facilities}</p>
-            <p><strong>Contact:</strong> {t.contact}</p>
-            <p>{t.description}</p>
+          <div key={t.id} className="card">
+            
+            <Image
+              src={t.image}
+              alt={t.name}
+              width={400}
+              height={250}
+              className="card-image"
+            />
+
+            <div className="card-content">
+              <h3 className="card-title">{t.name}</h3>
+
+              <p className="card-text">
+                <b>Type:</b> {t.type}
+              </p>
+
+              <p className="card-text">
+                <b>Timing:</b> {t.timing}
+              </p>
+
+              <p className="card-text">
+                <b>Route:</b> {t.route}
+              </p>
+
+              <p className="card-text">
+                <b>Fare:</b> {t.fare}
+              </p>
+
+              <p className="card-text">
+                <b>Stops:</b> {t.stops?.join(", ")}
+              </p>
+
+              <p className="card-text">
+                <b>Facilities:</b> {t.facilities}
+              </p>
+
+              <p className="card-text">
+                <b>Contact:</b> {t.contact}
+              </p>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
 }
-

@@ -20,3 +20,58 @@ body {
   font-family: var(--font);
   line-height: 1.6;
 }
+
+/* ================= LAYOUT ================= */
+
+.page-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.main-content {
+  padding-top: 100px; /* navbar space */
+}
+
+/* ================= CARDS ================= */
+
+.card-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ================= FAV BUTTON ================= */
+
+.fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.fav-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .page-container {
+    padding-inline: 12px;
+  }
+
+  .card-image {
+    height: 180px;
+  }
+
+  .main-content {
+    padding-top: 80px;
+  }
+}

@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import "./globals.css";
 import Providers from "./Provider";
 import Navbar from "@/components/Navbar";
@@ -9,13 +8,22 @@ export const metadata = {
   description: "Smart City Information Portal",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
         <Providers>
           <Navbar />
-          <main className="page-container">{children}</main>
+
+          {/* MAIN CONTENT */}
+          <main className="main-wrapper">
+            {children}
+          </main>
+
           <Footer />
         </Providers>
       </body>

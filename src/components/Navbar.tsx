@@ -3,54 +3,67 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const router = useRouter();
+
+  const favCount = useSelector(
+    (state: RootState) => state.favourites.items.length
+  );
 
   useEffect(() => {
     setLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+
+    const syncLogin = () => {
+      setLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+    };
+
+    window.addEventListener("storage", syncLogin);
+    return () => window.removeEventListener("storage", syncLogin);
   }, []);
 
   const logout = () => {
     localStorage.removeItem("isLoggedIn");
-    window.location.href = "/";
+    setLoggedIn(false);
+    router.push("/");
   };
 
   return (
     <header className="navbar">
       <div className="navbar-inner">
-
-        {/* Logo */}
         <div className="navbar-logo">
           <span>Smart City</span>
         </div>
 
-        {/* Desktop Links */}
+        {/* DESKTOP */}
         <nav className="navbar-links">
           <Link href="/">Home</Link>
           <Link href="/tourist">Tourism</Link>
           <Link href="/transport">Transport</Link>
           <Link href="/hospitals">Hospitals</Link>
 
+          <Link href="/favourites">
+            ⭐ Favourites {favCount > 0 && `(${favCount})`}
+          </Link>
+
           {loggedIn ? (
-            <>
-              <Link href="/favourites">⭐ Favourites</Link>
-              <button onClick={logout} className="logout-link">
-                Logout
-              </button>
-            </>
+            <button onClick={logout} className="logout-link">
+              Logout
+            </button>
           ) : (
             <Link href="/login">Login</Link>
           )}
         </nav>
 
-        {/* Actions */}
         <div className="navbar-actions">
           <ThemeToggle />
-
           <button
-            className={`hamburger ${open ? "open" : ""}`}
+            className="hamburger"
             onClick={() => setOpen(!open)}
             aria-label="Menu"
           >
@@ -61,27 +74,20 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE */}
       {open && (
         <div className="mobile-menu">
           <Link href="/" onClick={() => setOpen(false)}>Home</Link>
           <Link href="/tourist" onClick={() => setOpen(false)}>Tourism</Link>
           <Link href="/transport" onClick={() => setOpen(false)}>Transport</Link>
           <Link href="/hospitals" onClick={() => setOpen(false)}>Hospitals</Link>
-
+          <Link href="/favourites" onClick={() => setOpen(false)}>
+            ⭐ Favourites {favCount > 0 && `(${favCount})`}
+          </Link>
           {loggedIn ? (
-            <>
-              <Link href="/favourites" onClick={() => setOpen(false)}>
-                ⭐ Favourites
-              </Link>
-              <button onClick={logout} className="logout-link">
-                Logout
-              </button>
-            </>
+            <button onClick={logout} className="logout-link">Logout</button>
           ) : (
-            <Link href="/login" onClick={() => setOpen(false)}>
-              Login
-            </Link>
+            <Link href="/login" onClick={() => setOpen(false)}>Login</Link>
           )}
         </div>
       )}
