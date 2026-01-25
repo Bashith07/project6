@@ -1,3 +1,33 @@
-.text-center { text-align: center; }
-.mt-lg { margin-top: 3rem; }
-.flex { display: flex; }
+/* ================= TEXT ================= */
+
+.text-center {
+  text-align: center;
+}
+
+/* ================= FLEX ================= */
+
+.flex {
+  display: flex;
+}
+
+/* ================= MARGINS ================= */
+
+.mt-lg {
+  margin-top: 3rem;
+}
+
+/* ================= RESPONSIVE HELPERS ================= */
+
+@media (max-width: 768px) {
+  .mt-lg {
+    margin-top: 2rem;
+  }
+
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .text-sm-mobile {
+    font-size: 0.9rem;
+  }
+}

@@ -2,77 +2,90 @@
 
 import Image from "next/image";
 import { tourists } from "@/data/touristData";
-import { useDispatch } from "react-redux";
-import { addFavourite } from "@/redux/slices/favSlice";
-import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/redux/slices/cartSlice";
+import { addFavourite, removeFavourite } from "@/redux/slices/favSlice";
+import { RootState } from "@/redux/store";
 
 export default function TouristPage() {
   const dispatch = useDispatch();
-  const router = useRouter();
+  const favItems = useSelector((state: RootState) => state.favourites.items);
 
-  const handleFavourite = (tourist: any) => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-    if (!isLoggedIn) {
-      router.push("/login"); // ❌ not logged in
-      return;
-    }
-
-    dispatch(
-      addFavourite({
-        id: tourist.id,
-        name: tourist.name,
-        shortDesc: tourist.type,
-        image: tourist.image,
-      })
-    );
-  };
+  const isFavourite = (id: string | number) =>
+    favItems.some((item) => item.id === id);
 
   return (
     <div className="container section">
+
       <h1 className="page-title">Tourist Spots</h1>
 
-      <div className="grid">
-        {tourists.map((t) => (
-          <div key={t.id} className="card">
-            
-            {/* IMAGE + STAR */}
-            <div style={{ position: "relative" }}>
+      <div className="tourist-grid">
+        {tourists.map((t) => {
+          const fav = isFavourite(t.id.toString());
+
+          return (
+            <div key={t.id} className="tourist-card">
+
+              {/* IMAGE */}
               <Image
                 src={t.image}
                 alt={t.name}
                 width={400}
-                height={250}
+                height={220}
                 className="card-image"
               />
 
-              {/* ⭐ Favourite Button */}
-              <button
-                onClick={() => handleFavourite(t)}
-                style={{
-                  position: "absolute",
-                  top: "12px",
-                  right: "12px",
-                  background: "white",
-                  borderRadius: "50%",
-                  padding: "6px 8px",
-                  cursor: "pointer",
-                  fontSize: "18px",
-                }}
-              >
-                ⭐
-              </button>
-            </div>
+              {/* CONTENT */}
+              <div className="card-content">
+                <h3 className="card-title">{t.name || "Unknown Spot"}</h3>
+                <p><b>Description:</b> {t.description || "No description available."}</p>
+                <p><b>Type:</b> {t.type || "N/A"}</p>
+                <p><b>Timing:</b> {t.timings || "N/A"}</p>
+                <p><b>Entry Fee:</b> {t.entryFee || "0"}</p>
+                <p><b>Facilities:</b> {t.facilities || "N/A"}</p>
+                <p><b>Contact:</b> {t.contact || "N/A"}</p>
 
-            {/* CONTENT */}
-            <div className="card-content">
-              <h3 className="card-title">{t.name}</h3>
-              <p className="card-text"><b>Type:</b> {t.type}</p>
-              <p className="card-text"><b>Timings:</b> {t.timings}</p>
-              <p className="card-text"><b>Entry Fee:</b> {t.entryFee}</p>
+                {/* ADD TO CART */}
+                <button
+                  className="btn-primary cart-btn"
+                  onClick={() =>
+                    dispatch(
+                      addToCart({
+                        id: t.id.toString(),
+                        name: t.name,
+                        image: t.image,
+                        price: t.entryFee || "0",
+                        quantity: 1,
+                      })
+                    )
+                  }
+                >
+                  🛒 Add to Cart
+                </button>
+
+                {/* FAVORITE BUTTON */}
+                <button
+                  className={`btn-favorite ${fav ? "active" : ""}`}
+                  onClick={() =>
+                    fav
+                      ? dispatch(removeFavourite(t.id.toString()))
+                      : dispatch(
+                          addFavourite({
+                            id: t.id.toString(),
+                            name: t.name,
+                            image: t.image,
+                            shortDesc: t.description || "Tourist Spot",
+                          })
+                        )
+                  }
+                >
+                  ❤️
+                </button>
+
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -1,32 +1,106 @@
-
-
-.container {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 2rem;
-}
-
-.section {
-  padding: 6rem 0;
-}
-
-
-.page-container {
-  padding-top: 120px;
-}
-
-
 @media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-    padding-inline: 1rem;
+  /* Container adjustments */
+  .container,
+  .page-container {
+    padding-inline: 16px; /* comfortable side padding */
   }
 
+  /* Section spacing */
   .section {
     padding: 3rem 0;
   }
 
-  .page-container {
-    padding-top: 80px;
+  /* Grid adjustments */
+  .grid,
+  .tourist-grid,
+  .transport-grid,
+  .elite-grid {
+    grid-template-columns: 1fr; /* single column for mobile */
+    gap: 1.8rem; /* spacing between cards */
+    justify-items: center; /* center the cards */
+  }
+
+  /* Card adjustments */
+  .tourist-card,
+  .transport-card,
+  .elite-card {
+    width: 100%; /* full width */
+    max-width: 350px; /* max width for mobile */
+    margin-inline: auto; /* center cards */
+  }
+
+  /* Card images */
+  .tourist-card img,
+  .transport-card img,
+  .elite-card img,
+  .card-image {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto; /* maintain aspect ratio */
+  }
+
+  /* Card content padding */
+  .tourist-card .card-content,
+  .transport-card .card-content,
+  .elite-card-content {
+    padding: 1.25rem;
+  }
+
+  /* Card title font size */
+  .tourist-card .card-title,
+  .transport-card .card-title,
+  .elite-card-content h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Buttons full width */
+  .btn-primary,
+  .btn-outline,
+  .btn-primary.cart-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Navbar adjustments */
+  .navbar-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .navbar-inner {
+    padding: 0.9rem 1.2rem;
+  }
+
+  /* Hero adjustments */
+  .hero-elite {
+    padding: 3rem 1.25rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content h1 span {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-outline {
+    width: 100%;
+    text-align: center;
   }
 }

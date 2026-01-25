@@ -12,8 +12,15 @@ export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
 
+  // ⭐ Favourites count
   const favCount = useSelector(
     (state: RootState) => state.favourites.items.length
+  );
+
+  // 🛒 Cart count
+  const cartCount = useSelector(
+    (state: RootState) =>
+      state.cart.items.reduce((total, item) => total + item.quantity, 0)
   );
 
   useEffect(() => {
@@ -40,15 +47,21 @@ export default function Navbar() {
           <span>Smart City</span>
         </div>
 
-        {/* DESKTOP */}
+        {/* ================= DESKTOP ================= */}
         <nav className="navbar-links">
           <Link href="/">Home</Link>
           <Link href="/tourist">Tourism</Link>
           <Link href="/transport">Transport</Link>
           <Link href="/hospitals">Hospitals</Link>
 
+          {/* ⭐ FAVOURITES */}
           <Link href="/favourites">
             ⭐ Favourites {favCount > 0 && `(${favCount})`}
+          </Link>
+
+          {/* 🛒 CART */}
+          <Link href="/cart">
+            🛒 Cart {cartCount > 0 && `(${cartCount})`}
           </Link>
 
           {loggedIn ? (
@@ -74,20 +87,32 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE */}
+      {/* ================= MOBILE ================= */}
       {open && (
         <div className="mobile-menu">
           <Link href="/" onClick={() => setOpen(false)}>Home</Link>
           <Link href="/tourist" onClick={() => setOpen(false)}>Tourism</Link>
           <Link href="/transport" onClick={() => setOpen(false)}>Transport</Link>
           <Link href="/hospitals" onClick={() => setOpen(false)}>Hospitals</Link>
+
+          {/* ⭐ FAVOURITES */}
           <Link href="/favourites" onClick={() => setOpen(false)}>
             ⭐ Favourites {favCount > 0 && `(${favCount})`}
           </Link>
+
+          {/* 🛒 CART */}
+          <Link href="/cart" onClick={() => setOpen(false)}>
+            🛒 Cart {cartCount > 0 && `(${cartCount})`}
+          </Link>
+
           {loggedIn ? (
-            <button onClick={logout} className="logout-link">Logout</button>
+            <button onClick={logout} className="logout-link">
+              Logout
+            </button>
           ) : (
-            <Link href="/login" onClick={() => setOpen(false)}>Login</Link>
+            <Link href="/login" onClick={() => setOpen(false)}>
+              Login
+            </Link>
           )}
         </div>
       )}

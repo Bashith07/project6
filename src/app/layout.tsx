@@ -17,14 +17,16 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
+
           <Navbar />
 
           {/* MAIN CONTENT */}
-          <main className="main-wrapper">
+          <main className="main-content">
             {children}
           </main>
 
           <Footer />
+
         </Providers>
       </body>
     </html>

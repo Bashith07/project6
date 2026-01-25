@@ -1,15 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import { hospitals } from "@/data/hospitalData";
+import { useDispatch } from "react-redux";
+
+import { addToCart } from "@/redux/slices/cartSlice";
 
 export default function HospitalsPage() {
+  const dispatch = useDispatch();
+
   return (
     <div className="container section">
       <h1 className="page-title">Hospitals</h1>
 
       <div className="grid">
         {hospitals.map((h) => (
-          <div key={h.id} className="card">
-            
+          <div key={h.id} className="card relative">
+            {/* Image */}
             <Image
               src={h.image}
               alt={h.name}
@@ -45,16 +52,23 @@ export default function HospitalsPage() {
                 <b>Facilities:</b> {h.facilities}
               </p>
 
-              {h.website && (
-                <a
-                  href={h.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link"
-                >
-                  Visit Website
-                </a>
-              )}
+              {/* 🛒 Add to Cart */}
+              <button
+                className="btn-primary"
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      id: h.id.toString(),
+                      name: h.name,
+                      image: h.image,
+                      price: "Service Based",
+                      quantity: 1,
+                    })
+                  )
+                }
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         ))}
