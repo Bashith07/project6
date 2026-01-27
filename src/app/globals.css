@@ -3,68 +3,122 @@
 @tailwind utilities;
 
 /* ================= IMPORTS ================= */
+
 @import "../styles/theme.css";
 @import "../styles/layout.css";
 @import "../styles/components.css";
 @import "../styles/utilities.css";
 @import "../styles/auth.css";
 
+/* ================= RESET ================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* ================= BASE ================= */
+
 html,
 body {
+  width: 100%;
   height: 100%;
+
+  max-width: 100%;
+  overflow-x: hidden; /* ✅ STOP HORIZONTAL SCROLL */
+
   scroll-behavior: smooth;
-  margin: 0;
+
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
+
   line-height: 1.6;
 }
 
-/* ================= LAYOUT ================= */
+/* Prevent media overflow */
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================= MAIN ================= */
+
 .main-content {
   padding-top: 110px;
 }
 
+/* ================= CONTAINERS ================= */
+
 .page-container,
 .container {
-  max-width: 1200px;
   width: 100%;
+  max-width: 1200px;
+
   margin-inline: auto;
-  padding-inline: 20px;
+
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+/* ================= SECTION ================= */
 
 .section {
   padding: 4rem 0;
 }
 
 /* ================= PAGE TITLE ================= */
+
 .page-title {
   text-align: center;
+
   margin-bottom: 2rem;
+
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 800;
 }
 
 /* ================= GRID ================= */
+
 .grid {
   display: grid;
+
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
   gap: 1.8rem;
+
   justify-items: center;
 }
 
 /* ================= CARD ================= */
-.card {
+
+.card,
+.transport-card,
+.tourist-card,
+.elite-card {
   background: var(--surface);
+
   border-radius: 18px;
+
   box-shadow: var(--shadow-sm);
+
   overflow: hidden;
+
   width: 100%;
   max-width: 360px;
+
   display: flex;
   flex-direction: column;
+
   transition: transform 0.2s, box-shadow 0.2s;
+
+  box-sizing: border-box;
 }
 
 .card:hover {
@@ -72,19 +126,29 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* Fixed image ratio */
-.card-image {
+/* Images */
+
+.card-image,
+.transport-card img,
+.tourist-card img,
+.elite-card img {
   width: 100%;
+
   aspect-ratio: 16/9;
+
   object-fit: cover;
+
   display: block;
 }
 
-/* Card content */
+/* Content */
+
 .card-content {
   padding: 1.3rem;
+
   display: flex;
   flex-direction: column;
+
   gap: 0.5rem;
 }
 
@@ -99,50 +163,64 @@ body {
 }
 
 /* ================= BUTTONS ================= */
+
 .btn-primary {
   background: var(--brand);
   color: #fff;
+
   padding: 0.75rem 1.4rem;
+
   border-radius: 12px;
+
   font-weight: 600;
+
   cursor: pointer;
+
   margin-top: 1rem;
-  transition: 0.2s;
+
   width: 100%;
+
   text-align: center;
+
+  transition: 0.2s;
 }
 
 .btn-primary:hover {
   opacity: 0.9;
 }
 
-.btn-primary:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 3px;
-}
-
 .btn-outline {
   border: 1px solid var(--border);
+
   padding: 0.75rem 1.4rem;
+
   border-radius: 12px;
+
   font-weight: 600;
+
   width: 100%;
+
   text-align: center;
 }
 
 /* ================= HERO ================= */
+
 .hero-elite {
   background: var(--surface);
+
   border-radius: 20px;
+
   padding: 4rem 2rem;
+
   box-shadow: var(--shadow-md);
+
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+
+  transition: 0.2s;
 }
 
 .hero-elite:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
 }
 
 .hero-content {
@@ -157,8 +235,11 @@ body {
 
 .hero-content span {
   display: block;
+
   font-size: 1.1rem;
+
   color: var(--muted);
+
   margin-top: 0.6rem;
 }
 
@@ -169,49 +250,67 @@ body {
 
 .hero-actions {
   display: flex;
+
   justify-content: center;
+
   gap: 1rem;
+
   margin-top: 2rem;
+
   flex-wrap: wrap;
 }
 
-/* ================= FOOTER ================= */
-.footer {
-  background: var(--surface);
-  color: var(--muted);
-  text-align: center;
-  padding: 2rem 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-}
+/* ================= IMAGE BOX ================= */
 
-/* ================= HOME IMAGE CENTER FIX ================= */
 .elite-img-box {
   position: relative;
+
   width: 100%;
+
   aspect-ratio: 16/9;
+
   padding: 14px;
-  box-sizing: border-box;
+
+  overflow: hidden;
 }
 
 .elite-card-img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
-  object-position: center;
+
   border-radius: 14px;
-  display: block;
 }
 
-/* ================= RESPONSIVE: MOBILE ================= */
+/* ================= FOOTER ================= */
+
+.footer {
+  background: var(--surface);
+
+  color: var(--muted);
+
+  text-align: center;
+
+  padding: 2rem 1rem;
+
+  border-top: 1px solid var(--border);
+
+  font-size: 0.9rem;
+}
+
+/* ================= MOBILE ================= */
+
 @media (max-width: 768px) {
+
   .main-content {
     padding-top: 80px;
   }
 
   .page-container,
   .container {
-    padding-inline: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .section {
@@ -222,17 +321,21 @@ body {
     font-size: 1.5rem;
   }
 
-  .grid {
+  .grid,
+  .transport-grid,
+  .tourist-grid,
+  .elite-grid {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+
+    margin: 0;
+    padding: 0;
   }
 
-  .card {
+  .card,
+  .transport-card,
+  .tourist-card,
+  .elite-card {
     max-width: 100%;
-  }
-
-  .card-image {
-    aspect-ratio: 4/3;
   }
 
   .card-content {
@@ -241,10 +344,6 @@ body {
 
   .card-title {
     font-size: 1rem;
-  }
-
-  .card-text {
-    font-size: 0.85rem;
   }
 
   .hero-elite {
@@ -261,27 +360,16 @@ body {
 
   .hero-actions a {
     width: 100%;
-    max-width: 260px;
-  }
-
-  .hero-content p {
-    margin-bottom: 1.5rem;
   }
 
   .footer {
     font-size: 0.8rem;
   }
-
-  .elite-img-box {
-    padding: 18px;
-  }
 }
 
-/* ================= RESPONSIVE: SMALL PHONES ================= */
+/* ================= SMALL PHONES ================= */
+
 @media (max-width: 360px) {
-  .card-image {
-    aspect-ratio: 1/1;
-  }
 
   .page-title {
     font-size: 1.3rem;
