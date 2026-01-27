@@ -1,53 +1,56 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AuthPage() {
+export default function LoginPage() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = () => {
-    localStorage.setItem("isLoggedIn", "true");
-    router.push("/");
+  const handleLogin = () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+    if (user.email === email && user.password === password) {
+      localStorage.setItem("isLoggedIn", "true");
+      router.push("/"); // Redirect home
+    } else {
+      setError("Invalid email or password");
+    }
   };
 
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <h1>{isLogin ? "Login" : "Register"}</h1>
+        <h1>Login</h1>
+        <p>Access Smart City services</p>
+
+        <input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button className="btn-primary" onClick={handleLogin}>
+          Login
+        </button>
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <p>
-          {isLogin
-            ? "Access Smart City services"
-            : "Create your Smart City account"}
-        </p>
-
-        <div className="auth-form">
-          {!isLogin && <input placeholder="Full Name" />}
-          <input placeholder="Email" />
-          <input type="password" placeholder="Password" />
-
-          <button className="btn-primary" onClick={handleSubmit}>
-            {isLogin ? "Login" : "Register"}
+          New here?{" "}
+          <button
+            onClick={() => router.push("/register")}
+            className="link-btn"
+          >
+            Create account
           </button>
-        </div>
-
-        <p className="auth-footer">
-          {isLogin ? (
-            <>
-              New here?{" "}
-              <button onClick={() => setIsLogin(false)} className="link-btn">
-                Create account
-              </button>
-            </>
-          ) : (
-            <>
-              Already registered?{" "}
-              <button onClick={() => setIsLogin(true)} className="link-btn">
-                Login
-              </button>
-            </>
-          )}
         </p>
       </div>
     </div>
