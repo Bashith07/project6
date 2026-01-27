@@ -2,7 +2,7 @@
   /* Container adjustments */
   .container,
   .page-container {
-    padding-inline: 16px; /* comfortable side padding */
+    padding-inline: 16px; 
   }
 
   /* Section spacing */
@@ -15,18 +15,18 @@
   .tourist-grid,
   .transport-grid,
   .elite-grid {
-    grid-template-columns: 1fr; /* single column for mobile */
-    gap: 1.8rem; /* spacing between cards */
-    justify-items: center; /* center the cards */
+    grid-template-columns: 1fr; 
+    gap: 1.8rem; 
+    justify-items: center; 
   }
 
   /* Card adjustments */
   .tourist-card,
   .transport-card,
   .elite-card {
-    width: 100%; /* full width */
-    max-width: 350px; /* max width for mobile */
-    margin-inline: auto; /* center cards */
+    width: 100%; 
+    max-width: 350px; 
+    margin-inline: auto; 
   }
 
   /* Card images */
@@ -37,7 +37,7 @@
     display: block;
     margin: 0 auto;
     width: 100%;
-    height: auto; /* maintain aspect ratio */
+    height: auto; 
   }
 
   /* Card content padding */
