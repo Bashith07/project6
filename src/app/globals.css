@@ -375,3 +375,34 @@ video {
     font-size: 1.3rem;
   }
 }
+/* ================= CARD SIDE SPACING FIX ================= */
+
+/* Add safe padding on mobile */
+@media (max-width: 768px) {
+
+  .container,
+  .page-container {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  /* Prevent cards touching edges */
+  .transport-card,
+  .tourist-card,
+  .hospital-card,
+  .elite-card,
+  .card {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 16px;
+  }
+
+  /* Grid spacing */
+  .transport-grid,
+  .tourist-grid,
+  .hospital-grid,
+  .elite-grid {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
